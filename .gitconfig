@@ -1,0 +1,27 @@
+[user]
+  email = dlvandenberg@gmail.com
+	name = Dennis van den Berg
+	signingkey = key::ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPPa6dHm5YReJ9tjixxcoDhX94XCMj6wEj1Wsu/7qqR9 dennis.vandenberg@nedap.com
+[core]
+  editor = vim
+[color]
+  branch = auto
+  diff = auto
+  interactive = auto
+  status = auto
+[init]
+  defaultBranch = main
+[alias]
+  c = commit
+  cm = commit -m
+  d = diff
+[pull]
+  rebase = false
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true
+[gpg "ssh"]
+	allowedsignersfile = /Users/dennis.vandenberg/.ssh/allowed_signers
+[push]
+	autoSetupRemote = true

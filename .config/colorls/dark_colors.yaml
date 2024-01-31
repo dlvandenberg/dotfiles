@@ -1,0 +1,46 @@
+# Main Colors
+unrecognized_file: "#a89984"
+recognized_file: "yellow"
+executable_file: "#8ec07c"
+dir: "blue"
+
+# Link
+dead_link: "#fb4934"
+link: cyan
+
+# special files
+socket: green
+blockdev: green
+chardev: green
+
+# Access Modes
+write: "#8ec07c"
+read: "#b8bb26"
+exec: "#fb4934"
+no_access: "#928374"
+
+# Age
+day_old: "#98971a"
+hour_old: "#b8bb26"
+no_modifier: "#8ec07c"
+
+# File Size
+file_large: orange
+file_medium: gold
+file_small: peachpuff
+
+# Random
+report: white
+user: moccasin
+tree: cyan
+empty: yellow
+error: red
+normal: darkkhaki
+inode: moccasin
+
+# Git
+addition: chartreuse
+modification: darkkhaki
+deletion: darkred
+untracked: darkorange
+unchanged: forestgreen
