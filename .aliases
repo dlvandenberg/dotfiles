@@ -12,6 +12,4 @@ alias ef='cd /Users/dennis.vandenberg/Developer/Nedap/git/eris/eris-frontend'
 alias ae='cd /Users/dennis.vandenberg/Developer/Persoonlijk/git/Aegis/'
 alias aw='cd /Users/dennis.vandenberg/Developer/Nedap/git/atwork/atwork'
 
-alias keystop='docker stop nefeli-keycloak && docker stop nefeli-keycloak-data && docker rm nefeli-keycloak && docker rm nefeli-keycloak-data'
-
 alias nomlogin='ssh -L 4646:localhost:4646 nomad.security-development.query.consul'
