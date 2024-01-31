@@ -1,0 +1,104 @@
+#!/usr/bin/env bash
+
+# Mac OS X configuration
+#
+# This configuration applies to the latest version of macOS (currently 11.3),
+# and sets up preferences and configurations for all the built-in services and
+# apps. Third-party app config should be done elsewhere.
+#
+# Options:
+#   --no-restart: Don't restart any apps or services after running the script.
+#
+# If you want to figure out what default needs changing, do the following:
+#
+#   1. `cd /tmp`
+#   2. Store current defaults in file: `defaults read > before`
+#   3. Make a change to your system.
+#   4. Store new defaults in file: `defaults read > after`
+#   5. Diff the files: `diff before after`
+#
+# @see: http://secrets.blacktree.com/?showapp=com.apple.finder
+# @see: https://github.com/herrbischoff/awesome-macos-command-line
+#
+# @author Jeff Geerling
+# @author Dennis van den Berg
+
+# Warn that some commands will not be run if the script is not run as root.
+if [[ $EUID -ne 0 ]]; then
+  RUN_AS_ROOT=false
+  printf "Certain commands will not be run without sudo privileges. To run as root, run the same command prepended with 'sudo', for example: $ sudo $0\n\n" | fold -s -w 80
+else
+  RUN_AS_ROOT=true
+  # Update existing `sudo` timestamp until `.osx` has finished
+  while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+fi
+
+#          ╭──────────────────────────────────────────────────────────╮
+#          │                      General UI/UX                       │
+#          ╰──────────────────────────────────────────────────────────╯
+
+# Restart automatically if the computer freezes
+if [[ "$RUN_AS_ROOT" = true ]]; then
+  systemsetup -setrestartfreeze on
+fi
+
+# Disable smart quotes as they're annoying when typing code
+defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
+
+# Disable smart dashes as they're annoying when typing code
+defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
+
+#          ╭──────────────────────────────────────────────────────────╮
+#          │                           Dock                           │
+#          ╰──────────────────────────────────────────────────────────╯
+
+# Set orientation of the Dock
+defaults write com.apple.dock orientation -string "right"
+
+# Set the icon size of Dock items
+defaults write com.apple.dock tilesize -int 30
+
+
+#          ╭──────────────────────────────────────────────────────────╮
+#          │                Trackpad, mouse, keyboard                 │
+#          ╰──────────────────────────────────────────────────────────╯
+
+# Disable auto-correct
+defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+
+# Set a fast keyboard repeat rate
+# KeyRepeat option requires logging out and back in
+defaults write NSGlobalDomain KeyRepeat -int 1
+defaults write NSGlobalDomain InitialKeyRepeat -int 20
+
+# Add Dvorak keyboard layout
+defaults write com.apple.HIToolbox AppleEnabledInputSources -array-add '{InputSourceKind="Keyboard Layout";"KeyboardLayout ID"=16300;"KeyboardLayout Name"="Dvorak";}'
+defaults write com.apple.HIToolbox AppleCurrentKeyboardLayoutInputSourceID -string "com.apple.keylayout.Dvorak"
+defaults write com.apple.HIToolbox AppleSelectedInputSources -array-add '{InputSourceKind="Keyboard Layout";"KeyboardLayout ID"=16300;"KeyboardLayout Name"="Dvorak";}'
+
+#          ╭──────────────────────────────────────────────────────────╮
+#          │                          Finder                          │
+#          ╰──────────────────────────────────────────────────────────╯
+
+# Show hidden files by default
+defaults write com.apple.finder AppleShowAllFiles -bool true
+
+# Show all filename extensions
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+
+# Show status bar
+defaults write com.apple.finder ShowStatusBar -bool true
+
+#          ╭──────────────────────────────────────────────────────────╮
+#          │           Kill/restart affected applicationsl            │
+#          ╰──────────────────────────────────────────────────────────╯
+
+# Restart affected applications if `--no-restart` flag is not present.
+if [[ ! ($* == *--no-restart*) ]]; then
+  for app in "cfprefsd" "Dock" "Finder" "SystemUIServer" "Terminal"; do
+    killall "${app}" > /dev/null 2>&1
+  done
+fi
+
+printf "Please log out and log back in to make all settings take effect.\n"
+
