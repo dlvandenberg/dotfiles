@@ -58,6 +58,8 @@ defaults write com.apple.dock orientation -string "right"
 # Set the icon size of Dock items
 defaults write com.apple.dock tilesize -int 30
 
+# Do not show recent applications in Dock
+defaults write com.apple.dock show-recents -int 0
 
 #          ╭──────────────────────────────────────────────────────────╮
 #          │                Trackpad, mouse, keyboard                 │
