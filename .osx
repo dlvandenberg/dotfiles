@@ -71,10 +71,14 @@ defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 # Set higher tracking speed
 defaults write NSGlobalDomain com.apple.mouse.scaling int 2
 
+# Set right-click
+defaults write com.apple.AppleMultitouchMouse MouseButtonMode -string "TwoButton"
+defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseButtonMode -string "TwoButton"
+
 # Set a fast keyboard repeat rate
 # KeyRepeat option requires logging out and back in
-defaults write NSGlobalDomain KeyRepeat -int 1
-defaults write NSGlobalDomain InitialKeyRepeat -int 20
+defaults write NSGlobalDomain KeyRepeat -int 2
+defaults write NSGlobalDomain InitialKeyRepeat -int 15
 
 # Add Dvorak keyboard layout
 defaults write com.apple.HIToolbox AppleEnabledInputSources -array-add '{InputSourceKind="Keyboard Layout";"KeyboardLayout ID"=16300;"KeyboardLayout Name"="Dvorak";}'
