@@ -1,7 +1,5 @@
 return {
-  "dlvandenberg/nvim-treesitter",
-  -- "nvim-treesitter/nvim-treesitter",
-  branch = "feature-angular",
+  "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
   event = { "BufRead", "BufNewFile" },
   dependencies = {

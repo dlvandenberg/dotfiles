@@ -1,7 +1,5 @@
 return {
-  -- "rgroli/other.nvim",
-  "dlvandenberg/other.nvim",
-  branch = "angular-mappings",
+  "rgroli/other.nvim",
   config = function()
     local other = require("other-nvim")
 
