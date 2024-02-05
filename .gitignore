@@ -1,0 +1,4 @@
+# Ignore unwanted configs
+.config/github-copilot/
+.config/iterm2/
+.config/yarn/global

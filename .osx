@@ -68,6 +68,9 @@ defaults write com.apple.dock show-recents -int 0
 # Disable auto-correct
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
+# Set higher tracking speed
+defaults write NSGlobalDomain com.apple.mouse.scaling int 2
+
 # Set a fast keyboard repeat rate
 # KeyRepeat option requires logging out and back in
 defaults write NSGlobalDomain KeyRepeat -int 1
