@@ -1,5 +1,5 @@
 [user]
-  email = dlvandenberg@gmail.com
+	email = dennis.vandenberg@nedap.com
 	name = Dennis van den Berg
 	signingkey = key::ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPPa6dHm5YReJ9tjixxcoDhX94XCMj6wEj1Wsu/7qqR9 dennis.vandenberg@nedap.com
 [core]

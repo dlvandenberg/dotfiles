@@ -6,12 +6,11 @@ return {
     gruvbox.setup({
       overrides = {
         ["@lsp.type.typeParameter.typescript"] = { bold = true },
-        ["@conditional.angular"] = { link = "GruvboxYellowBold" },
-        ["@repeat.angular"] = { link = "GruvboxYellowBold" },
+        ["@keyword.conditional.angular"] = { link = "GruvboxYellowBold" },
+        ["@keyword.repeat.angular"] = { link = "GruvboxYellowBold" },
         ["@keyword.coroutine.angular"] = { link = "GruvboxYellowBold" },
-        ["@exception.angular"] = { link = "GruvboxYellowBold" },
+        ["@keyword.exception.angular"] = { link = "GruvboxYellowBold" },
         ["@attribute.angular"] = { link = "GruvboxAqua" },
-        ["@keyword.event.angular"] = { link = "GruvboxRedUnderline" },
       },
     })
 
