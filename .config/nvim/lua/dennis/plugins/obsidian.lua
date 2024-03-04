@@ -32,7 +32,7 @@ return {
         prepend_note_id = true,
       },
       attachments = {
-        img_folder = "99. Attachments/Media/",
+        img_folder = "99.%20Attachments/Media/",
       },
       note_id_func = function(title)
         local note_name = ""
