@@ -1,0 +1,2 @@
+-- print("hello from angular.html.lua")
+-- vim.treesitter.start(0, "angular")

@@ -12,15 +12,15 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-    { import = 'dennis.plugins' },
-    { import = 'dennis.plugins.lsp' },
+  { import = "dennis.plugins" },
+  { import = "dennis.plugins.testing" },
+  { import = "dennis.plugins.lsp" },
 }, {
-    checker = {
-        enabled = true,
-        notify = false,
-    },
-    change_detection = {
-        notify = false,
-    },
+  checker = {
+    enabled = true,
+    notify = false,
+  },
+  change_detection = {
+    notify = false,
+  },
 })
-

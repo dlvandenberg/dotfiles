@@ -64,7 +64,7 @@ return {
 
     config.angularls.setup({
       root_dir = util.root_pattern("angular.json", "project.json"),
-      filetypes = { "angular", "html", "typescript", "typescriptreact" },
+      filetypes = { "html", "typescript", "typescriptreact" },
     })
   end,
 }
