@@ -3,8 +3,10 @@ return {
   tag = "0.1.4",
   dependencies = {
     "nvim-lua/plenary.nvim",
+    "mfussenegger/nvim-dap",
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     "nvim-telescope/telescope-dap.nvim",
+    "catgoose/telescope-helpgrep.nvim",
     "nvim-tree/nvim-web-devicons",
   },
   config = function()
@@ -14,6 +16,17 @@ return {
 
     telescope.load_extension("fzf")
     telescope.load_extension("dap")
+    telescope.load_extension("helpgrep")
+
+    telescope.setup({
+      extensions = {
+        helpgrep = {
+          ignore_paths = {
+            vim.fn.stdpath("state") .. "/lazy/readme",
+          },
+        },
+      },
+    })
 
     -- Custom keymaps
     keymap.set("n", "<leader>pf", builtin.find_files, { desc = "[P]roject [F]iles" })
@@ -23,5 +36,6 @@ return {
     end, { desc = "[P]roject [S]earch" })
     keymap.set("n", "<C-p>", builtin.git_files)
     keymap.set("n", "<C-o>", builtin.oldfiles)
+    keymap.set("n", "<leader>hs", ":Telescope helpgrep<CR>", { desc = "[H]elp [S]earch" })
   end,
 }

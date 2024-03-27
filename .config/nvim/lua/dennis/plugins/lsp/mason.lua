@@ -32,7 +32,6 @@ return {
         "lua_ls",
         "graphql",
         "emmet_ls",
-        "eslint",
       },
       -- auto install configured servers
       automatic_installation = true,

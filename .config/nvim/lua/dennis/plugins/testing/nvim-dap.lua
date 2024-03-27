@@ -1,7 +1,9 @@
 return {
   "mfussenegger/nvim-dap",
   dependencies = {
+    "nvim-neotest/nvim-nio",
     "rcarriga/nvim-dap-ui",
+    "theHamsta/nvim-dap-virtual-text",
   },
   config = function()
     local dap = require("dap")
@@ -104,7 +106,11 @@ return {
     dapui.setup()
     keymap.set("n", "<leader>du", dapui.toggle, get_opts({ desc = "[D]ebug [U]I" }))
 
-    dap.listeners.after.event_initialized["dapui_config"] = function()
+    dap.listeners.before.attach["dapui_config"] = function()
+      dapui.open()
+    end
+
+    dap.listeners.before.launch["dapui_config"] = function()
       dapui.open()
     end
 
@@ -122,5 +128,24 @@ return {
     keymap.set("n", "<leader>dl", telescope.list_breakpoints, get_opts({ desc = "[D]ebug Breakpoint [L]ist" }))
     keymap.set("n", "<leader>dv", telescope.variables, get_opts({ desc = "[D]ebug [V]ariables" }))
     keymap.set("n", "<leader>df", telescope.frames, get_opts({ desc = "[D]ebug [F]rames" }))
+
+    -- ╭─────────────────────────────────────────────────────────╮
+    -- │ NeoDev integration                                      │
+    -- ╰─────────────────────────────────────────────────────────╯
+    local neodev = require("neodev")
+    neodev.setup({
+      library = {
+        plugins = {
+          "nvim-dap-ui",
+        },
+        types = true,
+      },
+    })
+
+    -- ╭─────────────────────────────────────────────────────────╮
+    -- │ Virtual Text support                                    │
+    -- ╰─────────────────────────────────────────────────────────╯
+    local virtualtext = require("nvim-dap-virtual-text")
+    virtualtext.setup()
   end,
 }
