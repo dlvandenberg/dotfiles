@@ -51,6 +51,11 @@ return {
       end, opts)
     end)
 
+    -- ╭─────────────────────────────────────────────────────────╮
+    -- │ Setup diagnostic                                        │
+    -- ╰─────────────────────────────────────────────────────────╯
+    vim.diagnostic.config({ source = true })
+
     -- Setup Mason
     -- require('mason').setup({})
     -- require('mason-lspconfig').setup({
@@ -62,9 +67,15 @@ return {
     local config = require("lspconfig")
     local util = require("lspconfig.util")
 
+    -- ╭─────────────────────────────────────────────────────────╮
+    -- │ LSP setup                                               │
+    -- ╰─────────────────────────────────────────────────────────╯
     config.angularls.setup({
       root_dir = util.root_pattern("angular.json", "project.json"),
-      filetypes = { "html", "typescript", "typescriptreact" },
+      filetypes = { "html", "typescript", "typescriptreact", "angular.html" },
     })
+
+    -- Assumes lua-language-server is installed ─────────────────
+    config.lua_ls.setup({})
   end,
 }

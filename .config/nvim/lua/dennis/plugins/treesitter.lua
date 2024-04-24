@@ -4,6 +4,7 @@ return {
   event = { "BufRead", "BufNewFile" },
   dependencies = {
     { "nvim-treesitter/nvim-treesitter-textobjects" },
+    { "dlvandenberg/nvim-treesitter-nginx" },
     { "nvim-treesitter/playground" },
   },
   config = function()
@@ -28,6 +29,7 @@ return {
         "dockerfile",
         "markdown",
         "markdown_inline",
+        "nginx",
       },
 
       -- Install parsers synchronously (only applied to `ensure_installed`)
