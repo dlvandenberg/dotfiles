@@ -5,6 +5,7 @@ alias lla='ls -la'
 alias ..='cd ..'
 alias vim=nvim
 alias v=nvim
+alias cat=bat
 
 alias ngit='cd ~/Developer/Nedap/git/'
 alias nf='cd /Users/dennis.vandenberg/Developer/Nedap/git/nefeli/nefeli-frontend'
