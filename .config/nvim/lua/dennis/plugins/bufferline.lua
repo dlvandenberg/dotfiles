@@ -1,10 +1,13 @@
 return {
   "akinsho/bufferline.nvim",
   dependencies = { "nvim-tree/nvim-web-devicons" },
+  after = "mountnugget",
   version = "*",
   config = function()
     local bufferline = require("bufferline")
-    bufferline.setup()
+    bufferline.setup({
+      highlights = require("mountnugget.groups.integrations.bufferline").get(),
+    })
 
     local keymap = vim.keymap
     -- ── Buffer navigation ──────────────────────────────────────────────────────────────────────

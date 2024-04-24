@@ -1,12 +1,12 @@
 # Main Colors
-unrecognized_file: "#a89984"
-recognized_file: "yellow"
-executable_file: "#8ec07c"
+unrecognized_file: "#C9C5BA"
+recognized_file: "#CABF68"
+executable_file: "#A4A28E"
 dir: "blue"
 
 # Link
-dead_link: "#fb4934"
-link: cyan
+dead_link: "#FFA29C"
+link: "#93C0C8"
 
 # special files
 socket: green
@@ -14,15 +14,15 @@ blockdev: green
 chardev: green
 
 # Access Modes
-write: "#8ec07c"
-read: "#b8bb26"
-exec: "#fb4934"
-no_access: "#928374"
+write: "#7CAE50"
+read: "#DFD8A5"
+exec: "#E9D439"
+no_access: "#FE5F55"
 
 # Age
-day_old: "#98971a"
-hour_old: "#b8bb26"
-no_modifier: "#8ec07c"
+day_old: "#64A4B0"
+hour_old: "#93C0C8"
+no_modifier: "#DBD9D2"
 
 # File Size
 file_large: orange
