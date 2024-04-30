@@ -44,6 +44,6 @@ return {
     --   builtin.oldfiles({ cwd_only = true })
     -- end)
     keymap.set("n", "<leader>H", "<CMD>Telescope helpgrep<CR>", { desc = "[H]elp [S]earch" })
-    keymap.set("n", "<leader>u", "<CMD>Telescope undo<CR>", { desc = "[U]ndo" })
+    -- keymap.set("n", "<leader>u", "<CMD>Telescope undo<CR>", { desc = "[U]ndo" })
   end,
 }

@@ -67,6 +67,7 @@ return {
     keymap.set("n", "<leader>obo", ":ObsidianOpen<CR>", { desc = "[Ob]sidian [O]pen" })
     keymap.set("n", "<leader>olh", ":ObsidianFollowLink hsplit<CR>", { desc = "[O]bsidian Follow [L] [H]split" })
     keymap.set("n", "<leader>olv", ":ObsidianFollowLink vsplit<CR>", { desc = "[O]bsidian Follow [L] [V]split" })
+    keymap.set("n", "<leader>obf", ":ObsidianFollowLink<CR>", { desc = "[Ob]sidian [F]ollow" })
     keymap.set("n", "<leader>obl", ":ObsidianBacklinks<CR>", { desc = "[Ob]bsidian Back[l]inks" })
   end,
 }
