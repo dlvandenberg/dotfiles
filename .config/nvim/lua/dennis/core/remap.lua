@@ -24,6 +24,9 @@ vim.keymap.set("n", "<leader>Y", '"+Y', { desc = "[Y]ank to clipboard" })
 vim.keymap.set("n", "<leader>d", '"_d', { desc = "[D]elete into void" })
 vim.keymap.set("v", "<leader>d", '"_d', { desc = "[D]elete into void" })
 
+-- C-C does not trigger InsertLeave event, ESC does
+vim.keymap.set("i", "<C-c>", "<ESC>")
+
 -- Don't press Q
 vim.keymap.set("n", "Q", "<nop>")
 

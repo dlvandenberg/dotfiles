@@ -62,12 +62,18 @@ return {
       end,
     })
 
-    local keymap = vim.keymap
+    local wk = require("which-key")
 
-    keymap.set("n", "<leader>obo", ":ObsidianOpen<CR>", { desc = "[Ob]sidian [O]pen" })
-    keymap.set("n", "<leader>olh", ":ObsidianFollowLink hsplit<CR>", { desc = "[O]bsidian Follow [L] [H]split" })
-    keymap.set("n", "<leader>olv", ":ObsidianFollowLink vsplit<CR>", { desc = "[O]bsidian Follow [L] [V]split" })
-    keymap.set("n", "<leader>obf", ":ObsidianFollowLink<CR>", { desc = "[Ob]sidian [F]ollow" })
-    keymap.set("n", "<leader>obl", ":ObsidianBacklinks<CR>", { desc = "[Ob]bsidian Back[l]inks" })
+    wk.register({
+      obl = { ":ObsidianBacklinks<CR>", "[O]bsidian [B]ack[l]inks" },
+      fl = { ":ObsidianFollowLink<CR>", "Obsidian [F]ollow [L]ink" },
+      obo = { ":ObsidianOpen<CR>", "[O]bsidian [O]pen" },
+      olh = { ":ObsidianFollowLink hsplit<CR>", "[O]bsidian Open [L]ink in [H] split" },
+      olv = { ":ObsidianFollowLink vsplit<CR>", "[O]bsidian Open [L]ink in [V] split" },
+    }, {
+      prefix = "<leader>",
+      mode = "n",
+      silent = true,
+    })
   end,
 }

@@ -4,7 +4,11 @@ return {
     "nvim-lua/plenary.nvim",
     "antoinemadec/FixCursorHold.nvim",
     -- Adapters
-    "nvim-neotest/neotest-jest",
+    -- "nvim-neotest/neotest-jest",
+    {
+      "dlvandenberg/neotest-jest",
+      branch = "feat-call-expressions-in-testcase",
+    },
     "nvim-neotest/neotest-plenary",
     "marilari88/neotest-vitest",
     "thenbe/neotest-playwright",
