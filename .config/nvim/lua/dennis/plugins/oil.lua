@@ -30,12 +30,9 @@ return {
 
     local wk = require("which-key")
 
-    wk.register({
-      ["-"] = { "<CMD>Oil<CR>", "Open Oil" },
-      ["<leader>-"] = { require("oil").toggle_float, "Toggle Oil in Float" },
-    }, {
-      mode = "n",
-      silent = "true",
+    wk.add({
+      { "-", "<CMD>Oil<CR>", desc = "Open Oil" },
+      { "<leader>-", require("oil").toggle_float, desc = "Toggle Oil in Float" },
     })
   end,
 }

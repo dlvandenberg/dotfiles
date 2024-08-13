@@ -49,7 +49,7 @@ return {
         additional_vim_regex_highlighting = false,
       },
 
-      ident = { enable = true },
+      indent = { enable = true },
 
       incremental_selection = {
         enable = true,

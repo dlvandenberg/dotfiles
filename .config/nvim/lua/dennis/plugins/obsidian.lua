@@ -64,16 +64,12 @@ return {
 
     local wk = require("which-key")
 
-    wk.register({
-      obl = { ":ObsidianBacklinks<CR>", "[O]bsidian [B]ack[l]inks" },
-      fl = { ":ObsidianFollowLink<CR>", "Obsidian [F]ollow [L]ink" },
-      obo = { ":ObsidianOpen<CR>", "[O]bsidian [O]pen" },
-      olh = { ":ObsidianFollowLink hsplit<CR>", "[O]bsidian Open [L]ink in [H] split" },
-      olv = { ":ObsidianFollowLink vsplit<CR>", "[O]bsidian Open [L]ink in [V] split" },
-    }, {
-      prefix = "<leader>",
-      mode = "n",
-      silent = true,
+    wk.add({
+      { "<leader>fl", ":ObsidianFollowLink<CR>", desc = "Obsidian [F]ollow [L]ink" },
+      { "<leader>obl", ":ObsidianBacklinks<CR>", desc = "[O]bsidian [B]ack[l]inks" },
+      { "<leader>obo", ":ObsidianOpen<CR>", desc = "[O]bsidian [O]pen" },
+      { "<leader>olh", ":ObsidianFollowLink hsplit<CR>", desc = "[O]bsidian Open [L]ink in [H] split" },
+      { "<leader>olv", ":ObsidianFollowLink vsplit<CR>", desc = "[O]bsidian Open [L]ink in [V] split" },
     })
   end,
 }

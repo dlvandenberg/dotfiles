@@ -20,30 +20,23 @@ return {
     lsp_zero.on_attach(function(client, bufnr)
       local wk = require("which-key")
 
-      wk.register({
-        h = { "<cmd>lua vim.lsp.buf.hover()<cr>", "[H]over" },
-        gd = { "<cmd>lua vim.lsp.buf.definition()<cr>", "[G]o to [D]efinition" },
-        gD = { "<cmd>lua vim.lsp.buf.declaration()<cr>", "[G]o to [D]eclaration" },
-        gi = { "<cmd>lua vim.lsp.buf.implementation()<cr>", "[G]o to [I]mplentation" },
-        vws = { "<cmd>lua vim.lsp.buf.workspace_symbol()<cr>", "[V]iew [W]orkspace [S]ymbols" },
-        vca = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "[V]iew [C]ode [A]ctions" },
-        vr = { "<cmd>lua vim.lsp.buf.references()<cr>", "[V]iew [R]eferences" },
-        cr = { "<cmd>lua vim.lsp.buf.rename()<cr>", "[C]ode [R]ename" },
-        vd = { "<cmd>lua vim.diagnostic.open_float()<cr>", "[V]iew [D]iagnostics" },
-        ["[d"] = { "<cmd>lua vim.diagnostic.goto_next()<cr>", "Go to next diagnostic" },
-        ["]d"] = { "<cmd>lua vim.diagnostic.goto_previous()<cr>", "Go to previous diagnostic" },
-      }, {
-        prefix = "<leader>",
-        mode = "n",
-        silent = true,
+      wk.add({
+        { "<leader>[d", "<cmd>lua vim.diagnostic.goto_next()<cr>", desc = "Go to next diagnostic" },
+        { "<leader>]d", "<cmd>lua vim.diagnostic.goto_previous()<cr>", desc = "Go to previous diagnostic" },
+        { "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<cr>", desc = "[C]ode [R]ename" },
+        { "<leader>gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", desc = "[G]o to [D]eclaration" },
+        { "<leader>gd", "<cmd>lua vim.lsp.buf.definition()<cr>", desc = "[G]o to [D]efinition" },
+        { "<leader>gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", desc = "[G]o to [I]mplentation" },
+        { "<leader>h", "<cmd>lua vim.lsp.buf.hover()<cr>", desc = "[H]over" },
+        { "<leader>vca", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "[V]iew [C]ode [A]ctions" },
+        { "<leader>vd", "<cmd>lua vim.diagnostic.open_float()<cr>", desc = "[V]iew [D]iagnostics" },
+        { "<leader>vr", "<cmd>lua vim.lsp.buf.references()<cr>", desc = "[V]iew [R]eferences" },
+        { "<leader>vws", "<cmd>lua vim.lsp.buf.workspace_symbol()<cr>", desc = "[V]iew [W]orkspace [S]ymbols" },
       })
 
-      wk.register({
-        ["<C-a>"] = { "<cmd>lua vim.lsp.buf.signature_help()<cr>", "Signature Help" },
-        ["<M-s>"] = { "<cmd>lua vim.lsp.buf.signature_help()<cr>", "Signature Help" },
-      }, {
-        mode = "i",
-        silent = true,
+      wk.add({
+        { "<C-a>", "<cmd>lua vim.lsp.buf.signature_help()<cr>", desc = "Signature Help", mode = "i" },
+        { "<M-s>", "<cmd>lua vim.lsp.buf.signature_help()<cr>", desc = "Signature Help", mode = "i" },
       })
     end)
 
@@ -76,7 +69,7 @@ return {
 
     config.angularls.setup({
       root_dir = util.root_pattern("angular.json", "project.json"),
-      filetypes = { "html", "typescript", "typescriptreact", "angular.html" },
+      filetypes = { "html", "typescript", "typescriptreact", "htmlangular" },
     })
 
     -- Assumes lua-language-server is installed ─────────────────

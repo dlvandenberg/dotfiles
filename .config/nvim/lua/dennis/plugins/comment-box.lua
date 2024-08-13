@@ -5,15 +5,13 @@ return {
     local wk = require("which-key")
     local cb = require("comment-box")
 
-    wk.register({
-      ["<leader>c"] = {
-        name = " Boxes",
-        b = { "<Cmd>CBlcbox<CR>", "Box Title" },
-        t = { "<Cmd>CBllline<CR>", "Titled Line" },
-        l = { "<Cmd>CBline<CR>", "Simple Line" },
-        m = { "<Cmd>CBllbox14<CR>", "Marked" },
-        d = { "<Cmd>Cbd<CR>", "Delete box" },
-      },
+    wk.add({
+      { "<leader>c", group = " Boxes" },
+      { "<leader>cb", "<Cmd>CBlcbox<CR>", desc = "Box Title" },
+      { "<leader>cd", "<Cmd>Cbd<CR>", desc = "Delete box" },
+      { "<leader>cl", "<Cmd>CBline<CR>", desc = "Simple Line" },
+      { "<leader>cm", "<Cmd>CBllbox14<CR>", desc = "Marked" },
+      { "<leader>ct", "<Cmd>CBllline<CR>", desc = "Titled Line" },
     })
 
     cb.setup()
