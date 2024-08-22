@@ -1,0 +1,38 @@
+[colors]
+foreground="#E4E3DD"
+background="#272229"
+cursor_bg="#E4E3DD"
+cursor_border="#E4E3DD"
+cursor_fg="#272229"
+selection_bg="#49404D"
+selection_fg="#E4E3DD"
+split="#F5EBA3"
+compose_cursor="#EDDC5A"
+scrollbar_thumb="#49404D"
+
+ansi = [
+  "#231F25",
+  "#C6362C",
+  '#7CAE50',
+  '#D1BC18',
+  '#64A4B0',
+  '#BFB04A',
+  '#745869',
+  '#A4A28E',
+]
+
+brights = [
+  '#322C35',
+  "#DA6058",
+  '#96BF73',
+  '#F1E37E',
+  '#A1C8CE',
+  '#D5CB86',
+  '#B096A6',
+  '#E4E3DD',
+]
+
+[metadata]
+aliases = []
+author = "Dennis van den Berg (http://github.com/dlvandenberg/)"
+name = "mountnugget"

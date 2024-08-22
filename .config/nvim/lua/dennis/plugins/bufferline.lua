@@ -5,9 +5,7 @@ return {
   version = "*",
   config = function()
     local bufferline = require("bufferline")
-    bufferline.setup({
-      highlights = require("mountnugget.groups.integrations.bufferline").get(),
-    })
+    bufferline.setup({})
 
     local keymap = vim.keymap
     -- ── Buffer navigation ──────────────────────────────────────────────────────────────────────

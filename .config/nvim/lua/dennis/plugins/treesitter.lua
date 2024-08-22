@@ -4,7 +4,7 @@ return {
   event = { "BufRead", "BufNewFile" },
   dependencies = {
     { "nvim-treesitter/nvim-treesitter-textobjects" },
-    { "dlvandenberg/nvim-treesitter-nginx" },
+    -- { "dlvandenberg/nvim-treesitter-nginx" },
     { "nvim-treesitter/playground" },
   },
   config = function()
