@@ -58,7 +58,7 @@ console_title_template = ' {{ .Folder }} :: {{if .Root}}Admin{{end}}'
   [[blocks.segments]]
     type = 'go'
     style = 'plain'
-    template = 'ﳑ {{ .Full}}'
+    template = 'ﳑ {{ .Full}} '
     background = ''
     foreground = 'p:sky'
 
@@ -66,7 +66,7 @@ console_title_template = ' {{ .Folder }} :: {{if .Root}}Admin{{end}}'
     type = 'executiontime'
     style = 'plain'
     foreground = 'p:mountbatten'
-    template = '</> {{ .FormattedMs }}'
+    template = '</> {{ .FormattedMs }} '
 
   [[blocks.segments]]
     type = 'time'
