@@ -13,6 +13,7 @@ return {
     configs.setup({
       ensure_installed = {
         "angular",
+        "css",
         "tsx",
         "javascript",
         "typescript",

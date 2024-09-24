@@ -32,6 +32,28 @@ brights = [
   '#E4E3DD',
 ]
 
+[colors.tab_bar]
+  background='#322C35'
+
+[colors.tab_bar.active_tab]
+  bg_color='#EDDC5A'
+  fg_color='#322C35'
+  intensity='Bold'
+
+[colors.tab_bar.inactive_tab]
+  bg_color='#6B5D70'
+  fg_color='#DAC2D1'
+[colors.tab_bar.inactive_tab_hover]
+  bg_color='#A6983A'
+  fg_color='#322C35'
+
+[colors.tab_bar.new_tab]
+  bg_color='#49404D'
+  fg_color='#B096A6'
+[colors.tab_bar.new_tab_hover]
+  bg_color='#A6983A'
+  fg_color='#322C35'
+
 [metadata]
 aliases = []
 author = "Dennis van den Berg (http://github.com/dlvandenberg/)"

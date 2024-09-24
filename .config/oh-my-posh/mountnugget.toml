@@ -71,7 +71,7 @@ console_title_template = ' {{ .Folder }} :: {{if .Root}}Admin{{end}}'
   [[blocks.segments]]
     type = 'time'
     style = 'plain'
-    template = ' {{ .CurrentDate | date .Format }}'
+    template = '  {{ .CurrentDate | date .Format }}'
     background = ''
     foreground = 'p:rose'
     
@@ -92,7 +92,7 @@ console_title_template = ' {{ .Folder }} :: {{if .Root}}Admin{{end}}'
 
 [transient_prompt]
   template = '➜ '
-  background = 'p:terminal_bg'
+  background = 'transparent'
   foreground = 'p:gold'
 
 [secondary_prompt]

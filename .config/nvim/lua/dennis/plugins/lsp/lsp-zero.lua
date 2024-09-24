@@ -17,7 +17,7 @@ return {
     -- Setup lsp-zero
     local lsp_zero = require("lsp-zero")
 
-    lsp_zero.on_attach(function(client, bufnr)
+    local on_attach = function(client, bufnr)
       local wk = require("which-key")
 
       wk.add({
@@ -38,7 +38,8 @@ return {
         { "<C-a>", "<cmd>lua vim.lsp.buf.signature_help()<cr>", desc = "Signature Help", mode = "i" },
         { "<M-s>", "<cmd>lua vim.lsp.buf.signature_help()<cr>", desc = "Signature Help", mode = "i" },
       })
-    end)
+    end
+    lsp_zero.on_attach(on_attach)
 
     -- ╭─────────────────────────────────────────────────────────╮
     -- │ Setup diagnostic                                        │
@@ -67,10 +68,20 @@ return {
       },
     })
 
+    local omnisharp_bin = "~/.local/share/nvim/mason/bin/omnisharp"
+    local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+    config.omnisharp.setup({
+      -- cmd = { omnisharp_bin, "--languageserver", "--hostPID", tostring(pid) },
+      on_attach = on_attach,
+      capabilities = capabilities,
+    })
+
     config.angularls.setup({
       root_dir = util.root_pattern("angular.json", "project.json"),
       filetypes = { "html", "typescript", "typescriptreact", "htmlangular" },
     })
+
+    config.ts_ls.setup({})
 
     -- Assumes lua-language-server is installed ─────────────────
     config.lua_ls.setup({})

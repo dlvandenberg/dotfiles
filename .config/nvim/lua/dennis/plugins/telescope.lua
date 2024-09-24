@@ -28,22 +28,38 @@ return {
       },
     })
 
-    -- Custom keymaps
-    keymap.set("n", "<leader>pf", function()
-      builtin.find_files({ hidden = true })
-    end, { desc = "[P]roject [F]iles" })
-    keymap.set("n", "<leader>pb", builtin.buffers, { desc = "[P]roject [B]uffers" })
-    keymap.set("n", "<leader>ps", function()
-      builtin.grep_string({ search = vim.fn.input("Grep > ") })
-    end, { desc = "[P]roject [S]earch" })
-    keymap.set("n", "<C-p>", function()
-      builtin.git_files({ show_untracked = true })
-    end)
-    keymap.set("n", "<leader>vh", builtin.help_tags, { desc = "[V]im [H]elp" })
-    -- keymap.set("n", "<C-o>", function()
-    --   builtin.oldfiles({ cwd_only = true })
-    -- end)
-    keymap.set("n", "<leader>H", "<CMD>Telescope helpgrep<CR>", { desc = "[H]elp [S]earch" })
-    -- keymap.set("n", "<leader>u", "<CMD>Telescope undo<CR>", { desc = "[U]ndo" })
+    local wk = require("which-key")
+
+    wk.add({
+      {
+        "<leader>pf",
+        function()
+          builtin.find_files({ hidden = true })
+        end,
+        desc = "[P]roject [F]iles",
+      },
+      { "<leader>pb", builtin.buffers, desc = "[P]roject [B]uffers" },
+      {
+        "<leader>ps",
+        function()
+          builtin.grep_string({
+            search = vim.fn.input("Grep > "),
+            additional_args = function(opts)
+              return { "--hidden" }
+            end,
+          })
+        end,
+        desc = "[P]roject [S]earch",
+      },
+      {
+        "<C-p>",
+        function()
+          builtin.git_files({ show_untracked = true })
+        end,
+      },
+      { "<leader>vh", builtin.help_tags, desc = "[V]im [H]elp" },
+      { "<leader>H", "<CMD>Telescope helpgrep<CR>", desc = "[H]elp [S]earch" },
+      { "<leader>u", "<CMD>Telescope undo<CR>", desc = "[U]ndo" },
+    })
   end,
 }

@@ -18,6 +18,7 @@ return {
     vim.opt.conceallevel = 1
 
     obsidian.setup({
+      ui = { enable = false },
       workspaces = {
         {
           name = "brain",
