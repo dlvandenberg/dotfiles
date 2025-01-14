@@ -4,6 +4,8 @@
 export GOPATH=$HOME/go/
 export PATH=$GOPATH/bin:$PATH
 export PATH=/opt/homebrew/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/bin/qmk_toolchains_macosARM64/bin:$PATH
 
 eval "$(rbenv init - zsh)"
 
@@ -59,3 +61,4 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
   --border="rounded" --border-label="" --preview-window="border-rounded" --prompt="> "
   --marker=">" --pointer="◆" --separator="─" --scrollbar="│"
   --info="right"'
+export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"

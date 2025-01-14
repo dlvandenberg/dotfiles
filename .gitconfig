@@ -4,6 +4,7 @@
 	signingkey = key::ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPPa6dHm5YReJ9tjixxcoDhX94XCMj6wEj1Wsu/7qqR9 dennis.vandenberg@nedap.com
 [core]
   editor = vim
+	autocrlf = input
 [color]
   branch = auto
   diff = auto

@@ -115,10 +115,30 @@ config.keys = {
 		mods = "LEADER",
 		action = wezterm.action.ActivateTabRelative(1),
 	},
+	-- {
+	-- 	key = "l",
+	-- 	mods = "LEADER",
+	-- 	action = wezterm.action.ShowTabNavigator,
+	-- },
 	{
-		key = "l",
+		key = "H",
 		mods = "LEADER",
-		action = wezterm.action.ShowTabNavigator,
+		action = wezterm.action.AdjustPaneSize({ "Left", 5 }),
+	},
+	{
+		key = "J",
+		mods = "LEADER",
+		action = wezterm.action.AdjustPaneSize({ "Down", 5 }),
+	},
+	{
+		key = "K",
+		mods = "LEADER",
+		action = wezterm.action.AdjustPaneSize({ "Up", 5 }),
+	},
+	{
+		key = "L",
+		mods = "LEADER",
+		action = wezterm.action.AdjustPaneSize({ "Right", 5 }),
 	},
 	{
 		key = "w",
@@ -247,6 +267,31 @@ wezterm.on("update-status", function(win, pane)
 		{ Text = wezterm.nerdfonts.md_clock .. " " .. time },
 		{ Text = " " },
 	}))
+end)
+
+-- Support for font size increase via ZEN_MODE
+wezterm.on("user-var-changed", function(window, pane, name, value)
+	print("hello")
+	local overrides = window:get_config_overrides() or {}
+	if name == "ZEN_MODE" then
+		local incremental = value:find("+")
+		local number_value = tonumber(value)
+		if incremental ~= nil then
+			while number_value > 0 do
+				window:perform_action(wezterm.action.IncreaseFontSize, pane)
+				number_value = number_value - 1
+			end
+			overrides.enable_tab_bar = false
+		elseif number_value < 0 then
+			window:perform_action(wezterm.action.ResetFontSize, pane)
+			overrides.font_size = nil
+			overrides.enable_tab_bar = true
+		else
+			overrides.font_size = number_value
+			overrides.enable_tab_bar = false
+		end
+	end
+	window:set_config_overrides(overrides)
 end)
 
 return config

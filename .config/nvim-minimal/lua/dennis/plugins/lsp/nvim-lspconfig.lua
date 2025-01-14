@@ -1,23 +1,27 @@
 return {
-  "VonHeikemen/lsp-zero.nvim",
-  branch = "v3.x",
+  "neovim/nvim-lspconfig",
+  cmd = { 'LspInfo', 'LspInstall', 'LspStart' },
+  event = { 'BufReadPre', 'BufNewFile' },
   dependencies = {
     { "williamboman/mason.nvim" },
     { "williamboman/mason-lspconfig.nvim" },
-
-    -- LSP Support
-    { "neovim/nvim-lspconfig" },
     -- Autocompletion
-    { "hrsh7th/nvim-cmp" },
     { "hrsh7th/cmp-nvim-lsp" },
-    { "hrsh7th/cmp-buffer" },
-    { "L3MON4D3/LuaSnip" },
+    -- { "hrsh7th/cmp-buffer" },
   },
+  init = function()
+    vim.opt.signcolumn = 'yes'
+  end,
   config = function()
-    -- Setup lsp-zero
-    local lsp_zero = require("lsp-zero")
 
-    local on_attach = function(client, bufnr)
+    local lspconfig_defaults = require('lspconfig').util.default_config
+    lspconfig_defaults.capabilities = vim.tbl_deep_extend(
+      'force',
+      lspconfig_defaults.capabilities,
+      require('cmp_nvim_lsp').default_capabilities()
+    )
+
+    local on_attach = function(_, _)
       local wk = require("which-key")
 
       wk.add({
@@ -39,18 +43,16 @@ return {
         { "<M-s>", "<cmd>lua vim.lsp.buf.signature_help()<cr>", desc = "Signature Help", mode = "i" },
       })
     end
-    lsp_zero.on_attach(on_attach)
+
+    vim.api.nvim_create_autocmd('LspAttach', {
+      desc = "LSP Actions",
+      callback = on_attach
+    })
 
     -- ╭─────────────────────────────────────────────────────────╮
     -- │ Setup diagnostic                                        │
     -- ╰─────────────────────────────────────────────────────────╯
     vim.diagnostic.config({ source = true })
-
-    -- Setup Mason
-    -- require('mason').setup({})
-    -- require('mason-lspconfig').setup({
-    --     ensure_installed = {'tsserver', 'eslint'},
-    -- })
 
     local config = require("lspconfig")
     local util = require("lspconfig.util")
@@ -69,14 +71,14 @@ return {
       on_attach = on_attach,
     })
 
-    local omnisharp_bin = "~/.local/share/nvim/mason/bin/omnisharp"
-    local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
-    config.omnisharp.setup({
-      -- cmd = { omnisharp_bin, "--languageserver", "--hostPID", tostring(pid) },
-      on_attach = on_attach,
-      capabilities = capabilities,
-    })
-
+    -- local omnisharp_bin = "~/.local/share/nvim/mason/bin/omnisharp"
+    -- local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+    -- config.omnisharp.setup({
+    --   -- cmd = { omnisharp_bin, "--languageserver", "--hostPID", tostring(pid) },
+    --   on_attach = on_attach,
+    --   capabilities = capabilities,
+    -- })
+    --
     config.angularls.setup({
       root_dir = util.root_pattern("angular.json", "project.json"),
       filetypes = { "html", "typescript", "typescriptreact", "htmlangular" },
