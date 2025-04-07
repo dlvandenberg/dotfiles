@@ -54,7 +54,7 @@ return {
         end,
       },
       {
-        "<C-m>",
+        "<C-f>",
         function()
           require("dennis.plugins.telescope.multigrep").setup()
         end,

@@ -35,7 +35,7 @@ vim.keymap.set("n", "<C-m>", "<nop>")
 
 -- Quickfix list
 vim.keymap.set("n", "<leader>qn", "<cmd>cnext<CR>zz", { desc = "[Q]uickfix List [N]ext" })
-vim.keymap.set("n", "<leader>qv", "<cmd>cprev<CR>zz", { desc = "[Q]uickfix List [P]evious" })
+vim.keymap.set("n", "<leader>qp", "<cmd>cprev<CR>zz", { desc = "[Q]uickfix List [P]evious" })
 vim.keymap.set("n", "<leader>qo", "<cmd>copen<CR>zz", { desc = "[Q]uickfix List [O]pen" })
 vim.keymap.set("n", "<leader>qc", "<cmd>cclose<CR>zz", { desc = "[Q]uickfix List [C]lose" })
 -- vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz", { desc = "Quickfix List Next" })

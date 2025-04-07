@@ -1,10 +1,13 @@
 return {
   "pwntester/octo.nvim",
   dependencies = {
-    "nvim-treesitter/nvim-treesitter",
+    "nvim-treesitter",
     "nvim-lua/plenary.nvim",
     "nvim-telescope/telescope.nvim",
     "nvim-tree/nvim-web-devicons",
+  },
+  keys = {
+    { "<leader>o", "<CMD>Octo<CR>", desc = "[O]cto" },
   },
   init = function()
     vim.treesitter.language.register("markdown", "octo")

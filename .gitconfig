@@ -5,6 +5,7 @@
 [core]
   editor = vim
 	autocrlf = input
+  pager = delta
 [color]
   branch = auto
   diff = auto
@@ -12,6 +13,8 @@
   status = auto
 [init]
   defaultBranch = main
+[interactive]
+    diffFilter = delta --color-only
 [alias]
   c = commit
   cm = commit -m
@@ -26,3 +29,10 @@
 	allowedsignersfile = /Users/dennis.vandenberg/.ssh/allowed_signers
 [push]
 	autoSetupRemote = true
+[delta]
+    navigate = true  # use n and N to move between diff sections
+    dark = true      # or light = true, or omit for auto-detection
+    side-by-side = true
+[merge]
+    conflictstyle = zdiff3
+

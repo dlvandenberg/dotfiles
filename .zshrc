@@ -6,6 +6,7 @@ export PATH=$GOPATH/bin:$PATH
 export PATH=/opt/homebrew/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/bin/qmk_toolchains_macosARM64/bin:$PATH
+export PATH=/opt/homebrew/opt/python@3.13/libexec/bin:$PATH
 
 eval "$(rbenv init - zsh)"
 
@@ -62,3 +63,10 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
   --marker=">" --pointer="◆" --separator="─" --scrollbar="│"
   --info="right"'
 export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
+
+# bun completions
+[ -s "/Users/dennis.vandenberg/.bun/_bun" ] && source "/Users/dennis.vandenberg/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

@@ -1,7 +1,7 @@
 return {
   "neovim/nvim-lspconfig",
-  cmd = { 'LspInfo', 'LspInstall', 'LspStart' },
-  event = { 'BufReadPre', 'BufNewFile' },
+  cmd = { "LspInfo", "LspInstall", "LspStart" },
+  event = { "BufReadPre", "BufNewFile" },
   dependencies = {
     { "williamboman/mason.nvim" },
     { "williamboman/mason-lspconfig.nvim" },
@@ -10,16 +10,12 @@ return {
     -- { "hrsh7th/cmp-buffer" },
   },
   init = function()
-    vim.opt.signcolumn = 'yes'
+    vim.opt.signcolumn = "yes"
   end,
   config = function()
-
-    local lspconfig_defaults = require('lspconfig').util.default_config
-    lspconfig_defaults.capabilities = vim.tbl_deep_extend(
-      'force',
-      lspconfig_defaults.capabilities,
-      require('cmp_nvim_lsp').default_capabilities()
-    )
+    local lspconfig_defaults = require("lspconfig").util.default_config
+    lspconfig_defaults.capabilities =
+      vim.tbl_deep_extend("force", lspconfig_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
 
     local on_attach = function(_, _)
       local wk = require("which-key")
@@ -44,9 +40,9 @@ return {
       })
     end
 
-    vim.api.nvim_create_autocmd('LspAttach', {
+    vim.api.nvim_create_autocmd("LspAttach", {
       desc = "LSP Actions",
-      callback = on_attach
+      callback = on_attach,
     })
 
     -- ╭─────────────────────────────────────────────────────────╮
@@ -87,6 +83,10 @@ return {
     config.ts_ls.setup({
       root_dir = util.root_pattern(".git"),
     })
+
+    config.eslint.setup({})
+
+    config.svelte.setup({})
 
     -- Assumes lua-language-server is installed ─────────────────
     config.lua_ls.setup({})

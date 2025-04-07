@@ -1,5 +1,8 @@
 return {
+  name = "nvim-treesitter",
   "nvim-treesitter/nvim-treesitter",
+  -- "dlvandenberg/nvim-treesitter",
+  -- branch = "feat-angular-template-literals",
   build = ":TSUpdate",
   event = { "BufRead", "BufNewFile" },
   dependencies = {
@@ -8,6 +11,17 @@ return {
   },
   config = function()
     local configs = require("nvim-treesitter.configs")
+    local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+    parser_config.freemarker = {
+      install_info = {
+        url = "~/Developer/git/tree-sitter-freemarker/", -- local path or git repo
+        files = { "src/parser.c" }, -- note that some parsers also require src/scanner.c or src/scanner.cc
+        -- optional entries:
+        generate_requires_npm = false, -- if stand-alone parser without npm dependencies
+        branch = "main", -- default branch in case of git repo if different from master
+        requires_generate_from_grammar = false, -- if folder contains pre-generated src/parser.c
+      },
+    }
 
     configs.setup({
       ensure_installed = {
@@ -79,6 +93,8 @@ return {
       --     show_help = "?",
       --   },
       -- },
+
+      --- Add freemarker
     })
   end,
 }
