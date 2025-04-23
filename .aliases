@@ -5,7 +5,7 @@ alias la='colorls -a'
 alias lla='ls -la'
 alias ..='cd ..'
 alias vim=nvim
-alias v='NVIM_APPNAME=nvim-minimal nvim'
+alias v='NVIM_APPNAME=nvim-11 nvim'
 alias cat=bat
 
 alias nomlogin='ssh -L 4646:localhost:4646 nomad.security-development.query.consul'

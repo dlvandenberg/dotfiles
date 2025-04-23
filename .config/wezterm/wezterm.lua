@@ -1,8 +1,8 @@
 local wezterm = require("wezterm")
 local config = {}
 
-config.font = wezterm.font("JetBrainsMono Nerd Font")
--- config.font = wezterm.font("CommitMono Nerd Font")
+-- config.font = wezterm.font("JetBrainsMono Nerd Font")
+config.font = wezterm.font("CommitMono Nerd Font")
 config.font_size = 14
 
 config.window_decorations = "RESIZE"
