@@ -34,7 +34,8 @@ plugins=(
 # source $ZSH/oh-my-zsh.sh
 
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
-  eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/mountnugget.toml)"
+  # eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/mountnugget.toml)"
+  eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/moonfly.toml)"
 fi
 
 if [ -f ~/.aliases ]; then

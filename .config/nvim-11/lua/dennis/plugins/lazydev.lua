@@ -4,6 +4,7 @@ return {
   opts = {
     library = {
       { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+      { path = vim.fs.joinpath(vim.fn.stdpath("config"), "types/luasnip") },
     },
   },
 }

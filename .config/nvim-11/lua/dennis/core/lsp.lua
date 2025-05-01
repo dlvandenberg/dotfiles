@@ -18,7 +18,7 @@ local function configure_diagnostics()
     },
     float = {
       border = "rounded",
-      source = "if_many",
+      source = true,
     },
     signs = {
       text = {

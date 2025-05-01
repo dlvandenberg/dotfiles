@@ -1,0 +1,138 @@
+console_title_template = ' {{ .Folder }} :: {{if .Root}}Admin{{end}}'
+version = 3
+final_space = true
+
+[palette]
+  background = '#080808'
+  foreground = '#bdbdbd'
+  bold = '#eeeeee'
+  cursor = '#9e9e9e'
+  cursor_text = '#080808'
+  selection = '#b2ceee'
+  selection_text = '#080808'
+  black = '#323437'
+  black_bright = '#949494'
+  red = '#ff5d5d'
+  red_bright = '#ff5189'
+  green = '#8cc85f'
+  green_bright = '#36c692'
+  yellow = '#e3c78a'
+  yellow_bright = '#c6c684'
+  blue = '#80a0ff'
+  blue_bright = '#74b2ff'
+  purple = '#cf87e8'
+  purple_bright = '#ae81ff'
+  cyan = '#79dac8'
+  cyan_bright = '#85dc85'
+  white = '#c6c6c6'
+  white_bright = '#e4e4e4'
+
+[secondary_prompt]
+  template = '➜ '
+  foreground = 'p:gold'
+  background = 'transparent'
+
+[transient_prompt]
+  template = '➜ '
+  foreground = 'p:gold'
+  background = 'transparent'
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+
+  [[blocks.segments]]
+    template = '{{.Icon}} '
+    type = 'os'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+
+  [[blocks.segments]]
+    template = ' {{ .Path }}'
+    foreground = 'p:blue'
+    type = 'path'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+      home_icon = '~'
+      style = 'mixed'
+
+  [[blocks.segments]]
+    template = ' {{ .UpstreamIcon }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }}'
+    foreground = 'p:yellow_bright'
+    type = 'git'
+    style = 'plain'
+    foreground_templates = ['{{ if or (.Working.Changed) (.Staging.Changed) }}p:khaki{{ end }}', '{{ if and (gt .Ahead 0) (gt .Behind 0)}}p:sky{{ end }}', '{{ if gt .Ahead 0 }}p:munsell{{ end }}', '{{ if gt .Behind 0 }}p:moonstone{{ end }}']
+
+    [blocks.segments.properties]
+      branch_icon = ' '
+      cache_duration = 'none'
+      fetch_status = true
+
+  [[blocks.segments]]
+    template = ' '
+    foreground = 'p:red'
+    type = 'status'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'right'
+  overflow = 'hide'
+
+  [[blocks.segments]]
+    template = ' {{ .Full }} '
+    foreground = 'p:green'
+    type = 'node'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+
+  [[blocks.segments]]
+    template = 'ﳑ {{ .Full}} '
+    foreground = 'p:cyan'
+    type = 'go'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+
+  [[blocks.segments]]
+    template = '</> {{ .FormattedMs }} '
+    foreground = 'p:green_bright'
+    type = 'executiontime'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+
+  [[blocks.segments]]
+    template = '  {{ .CurrentDate | date .Format }}'
+    foreground = 'p:purple'
+    type = 'time'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+      threshold = 500
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+  newline = true
+
+  [[blocks.segments]]
+    template = '❯'
+    foreground = 'p:cyan_bright'
+    type = 'text'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'

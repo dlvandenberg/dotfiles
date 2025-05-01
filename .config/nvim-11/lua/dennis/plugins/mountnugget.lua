@@ -8,6 +8,6 @@ return {
     })
 
     -- setup must be called before loading
-    vim.cmd.colorscheme("mountnugget")
+    -- vim.cmd.colorscheme("mountnugget")
   end,
 }

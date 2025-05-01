@@ -7,7 +7,8 @@ config.font_size = 14
 
 config.window_decorations = "RESIZE"
 
-config.color_scheme = "mountnugget"
+-- config.color_scheme = "mountnugget"
+config.color_scheme = "moonfly"
 config.window_background_opacity = 0.85
 config.macos_window_background_blur = 90
 config.inactive_pane_hsb = {
