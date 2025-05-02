@@ -6,33 +6,21 @@ return {
   build = "make install_jsregexp",
   event = { "BufReadPre", "BufNewFile" },
   config = function()
-    local wk = require("which-key")
     local ls = require("luasnip")
 
-    wk.add({
-      {
-        "<C-n",
-        function()
-          if ls.expand_or_jumpable then
-            ls.expand_or_jump()
-          end
-        end,
-        { silent = true },
-      },
-      {
-        "<C-p",
-        function()
-          if ls.jumpable(-1) then
-            ls.jump(-1)
-          end
-        end,
-        { silent = true },
-      },
-      { mode = {
-        "i",
-        "s",
-      } },
-    })
+    vim.keymap.set({ "i", "s" }, "<C-n>", function()
+      ls.jump(1)
+    end, { silent = true })
+
+    vim.keymap.set({ "i", "s" }, "<C-p>", function()
+      ls.jump(-1)
+    end, { silent = true })
+
+    vim.keymap.set({ "i", "s" }, "<C-e>", function()
+      if ls.choice_active() then
+        ls.change_choice(1)
+      end
+    end, { silent = true })
 
     require("luasnip.loaders.from_lua").load({ paths = vim.fs.joinpath(vim.fn.stdpath("config"), "snippets") })
     require("luasnip.loaders.from_vscode").lazy_load()

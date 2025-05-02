@@ -6,6 +6,23 @@ local function get_workspace_folder()
   }
 end
 
+local function insert_package_json(config_files, field, fname)
+  local path = vim.fn.fnamemodify(fname, ":h")
+  local root_with_package = vim.fs.find({ "package.json", "package.json5" }, { path = path, upward = true })[1]
+
+  if root_with_package then
+    -- only add package.json if it contains field parameter
+    for line in io.lines(root_with_package) do
+      if line:find(field) then
+        config_files[#config_files + 1] = vim.fs.basename(root_with_package)
+        break
+      end
+    end
+  end
+
+  return config_files
+end
+
 ---@type vim.lsp.Config
 return {
   cmd = { "vscode-eslint-language-server", "--stdio" },
@@ -18,42 +35,119 @@ return {
     "typescript.jsx",
     "svelte",
   },
-  root_markers = {
-    "package.json",
-    ".git",
-    ".eslintrc",
-    ".eslintrc.js",
-    ".eslintrc.cjs",
-    ".eslintrc.yaml",
-    ".eslintrc.yml",
-    ".eslintrc.json",
-    "eslint.config.js",
-    "eslint.config.mjs",
-    "eslint.config.cjs",
-    "eslint.config.ts",
-    "eslint.config.mts",
-    "eslint.config.cts",
-  },
-  --- See https://github.com/Microsoft/vscode-eslint#settings-options for documentation
+  workspace_required = true,
+  root_dir = function(bufnr, on_dir)
+    local root_file_patterns = {
+      ".eslintrc",
+      ".eslintrc.js",
+      ".eslintrc.cjs",
+      ".eslintrc.yaml",
+      ".eslintrc.yml",
+      ".eslintrc.json",
+      "eslint.config.js",
+      "eslint.config.mjs",
+      "eslint.config.cjs",
+      "eslint.config.ts",
+      "eslint.config.mts",
+      "eslint.config.cts",
+    }
+
+    local fname = vim.api.nvim_buf_get_name(bufnr)
+    root_file_patterns = insert_package_json(root_file_patterns, "eslintConfig", fname)
+    on_dir(vim.fs.dirname(vim.fs.find(root_file_patterns, { path = fname, upward = true })[1]))
+  end,
   settings = {
-    useESLintClass = false,
-    quiet = false, -- Ignore warnings
     validate = "on",
-    format = true,
-    nodePath = "",
+    packageManager = nil,
+    useESLintClass = false,
+    experimental = {
+      useFlatConfig = false,
+    },
     codeActionsOnSave = {
       enable = false,
       mode = "all",
     },
+    format = true,
+    quiet = false, -- Ignore warnings
+    onIgnoredFiles = "off",
+    rulesCustomizations = {},
+    run = "onType",
     problems = {
       shortenToSingleLine = false,
     },
-    experimental = {
-      useFlatConfig = false,
-    },
-    packageManager = nil,
-    onIgnoredFiles = "off",
+    nodePath = "",
     workingDirectory = { mode = "location" },
-    workspaceFolder = get_workspace_folder(),
+    codeAction = {
+      disableRuleComment = {
+        enable = true,
+        location = "seperateLine",
+      },
+      showDocumentation = {
+        enable = true,
+      },
+    },
+  },
+  before_init = function(_, config)
+    -- The 'workspaceFolder' is a VSCode concept. It limits how far the
+    -- server will travers the file system when locating the ESLint config
+    -- file (e.g. .eslintrc)
+    local root_dir = config.root_dir
+
+    if root_dir then
+      config.settings = config.settings or {}
+      config.settings.workspaceFolder = {
+        uri = root_dir,
+        name = vim.fn.fnamemodify(root_dir, ":t"),
+      }
+
+      -- Support flat config
+      local flat_config_files = {
+        "eslint.config.js",
+        "eslint.config.mjs",
+        "eslint.config.cjs",
+        "eslint.config.ts",
+        "eslint.config.mts",
+        "eslint.config.cts",
+      }
+
+      for _, file in ipairs(flat_config_files) do
+        if vim.fn.filereadable(root_dir .. "/" .. file) == 1 then
+          config.settings.experimental = config.settings.experimental or {}
+          config.settings.experimental.useFlatConfig = true
+          break
+        end
+      end
+
+      -- Support Yarn2 (PnP) projects
+      local pnp_cjs = root_dir .. "/.pnp.cjs"
+      local pnp_js = root_dir .. "/.pnp.js"
+      if vim.uv.fs_stat(pnp_cjs) or vim.uv.fs_stat(pnp_js) then
+        local cmd = config.cmd
+        config.cmd = vim.list_extend({ "yarn", "exec" }, cmd)
+      end
+    end
+  end,
+  handlers = {
+    ["eslint/openDoc"] = function(_, result)
+      if result then
+        vim.ui.open(result.url)
+      end
+      return {}
+    end,
+
+    ["eslint/confirmESLintExecution"] = function(_, result)
+      if not result then
+        return
+      end
+      return 4 -- approved
+    end,
+    ["eslint/probeFailed"] = function()
+      vim.notify("[lsp] ESLint probe failed.", vim.log.levels.WARN)
+      return {}
+    end,
+    ["eslint/noLibrary"] = function()
+      vim.notify("[lsp] Unable to find ESLint library.", vim.log.levels.WARN)
+      return {}
+    end,
   },
 }

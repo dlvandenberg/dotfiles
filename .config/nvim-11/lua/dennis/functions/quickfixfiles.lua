@@ -1,3 +1,6 @@
+-- Load :Cfilter
+vim.cmd([[ packadd cfilter ]])
+
 vim.api.nvim_create_user_command("QFList", function()
   local qflist = vim.fn.getqflist()
 
