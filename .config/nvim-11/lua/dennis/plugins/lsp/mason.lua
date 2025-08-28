@@ -1,5 +1,5 @@
 return {
-  "williamboman/mason.nvim",
+  "mason-org/mason.nvim",
   lazy = false,
   config = function()
     local mason = require("mason")
@@ -11,7 +11,7 @@ return {
           package_pending = "→",
           package_uninstalled = "✕",
         },
-        border = "rounded"
+        border = "rounded",
       },
     })
   end,

@@ -1,0 +1,39 @@
+[metadata]
+name = "rose-pine"
+origin_url = "https://rosepinetheme.com"
+
+[colors]
+background = "#191724"       # base
+foreground = "#e0def4"       # text
+cursor_bg = "#e0def4"        # text
+cursor_fg = "#191724"        # base
+cursor_border = "#e0def4"    # text
+selection_bg = "#403d52"     # highlight_med
+selection_fg = "#e0def4"     # text
+scrollbar_thumb = "#6e6a86"  # highlight_low
+split = "#6e6a86"            # highlight_low
+
+ansi = [
+  "#191724", # black (muted surface)
+  "#eb6f92", # red (love)
+  "#9ccfd8", # green (foam)
+  "#f6c177", # yellow (gold)
+  "#31748f", # blue (pine)
+  "#c4a7e7", # magenta (iris)
+  "#ebbcba", # cyan (rose)
+  "#e0def4", # white (text)
+]
+brights = [
+  "#6e6a86", # bright black (highlight low)
+  "#eb6f92", # bright red (love)
+  "#9ccfd8", # bright green (foam)
+  "#f6c177", # bright yellow (gold)
+  "#31748f", # bright blue (pine)
+  "#c4a7e7", # bright magenta (iris)
+  "#ebbcba", # bright cyan (rose)
+  "#f6f6f6", # bright white (near white)
+]
+
+compose_cursor = "#f6c177"   # gold
+visual_bell = "#eb6f92"      # love
+

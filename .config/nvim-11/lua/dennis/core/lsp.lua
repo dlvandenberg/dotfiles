@@ -8,14 +8,14 @@ local function configure_diagnostics()
     severity_sort = true,
     virtual_text = {
       severity = {
-        max = vim.diagnostic.severity.WARN,
+        max = vim.diagnostic.severity.ERROR,
       },
     },
-    virtual_lines = {
-      severity = {
-        min = vim.diagnostic.severity.ERROR,
-      },
-    },
+    -- virtual_lines = {
+    --   severity = {
+    --     min = vim.diagnostic.severity.ERROR,
+    --   },
+    -- },
     float = {
       border = "rounded",
       source = true,
@@ -82,4 +82,16 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 -- Enable configured language servers
 -- Configuration is placed in lsp/*.lua files
-vim.lsp.enable({ "lua_ls", "html", "cssls", "emmet_ls", "ts_ls", "angularls", "jsonls", "eslint" })
+vim.lsp.enable({
+  "lua_ls",
+  "html",
+  "cssls",
+  "emmet_ls",
+  "ts_ls",
+  "angularls",
+  "jsonls",
+  "eslint",
+  "sourcekit",
+  "gopls",
+  "svelte",
+})

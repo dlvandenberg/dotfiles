@@ -1,15 +1,13 @@
 return {
   "nvim-neotest/neotest",
+  commit = "52fca671",
   dependencies = {
     "nvim-neotest/nvim-nio",
     "nvim-lua/plenary.nvim",
     "antoinemadec/FixCursorHold.nvim",
     "nvim-treesitter",
     --- Adapters
-    {
-      "dlvandenberg/neotest-jest",
-      branch = "feat-call-expressions-in-testcase",
-    },
+    "nvim-neotest/neotest-jest",
   },
   event = { "BufEnter *.spec.ts", "BufEnter *.test.ts" },
   config = function()

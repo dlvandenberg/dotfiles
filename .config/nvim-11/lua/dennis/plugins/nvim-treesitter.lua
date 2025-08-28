@@ -96,5 +96,17 @@ return {
 
       --- Add freemarker
     })
+
+    local wk = require("which-key")
+
+    wk.add({
+      {
+        "<leader>jy",
+        function()
+          require("dennis.plugins.treesitter.json-copy-path").copy_path()
+        end,
+        desc = "[J]son [Y]ank path",
+      },
+    })
   end,
 }

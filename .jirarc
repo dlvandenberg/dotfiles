@@ -1,0 +1,11 @@
+jira-nef-sprint() {
+  jira sprint list --current -s~closed --order-by type --reverse
+}
+
+jira-nef-sprint-mine() {
+  jira sprint list --current -a$(jira me) --order-by type --reverse -s~closed
+}
+
+jira-nef-backlog() {
+  jira issue list -q 'summary ~ FE and sprint is EMPTY' -s~closed -s~'Acceptance' -s~'To Refine' -s~'New' --order-by rank --reverse
+}

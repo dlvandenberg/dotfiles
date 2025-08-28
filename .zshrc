@@ -1,3 +1,5 @@
+# Add deno completions to search path
+if [[ ":$FPATH:" != *":/Users/dennis.vandenberg/.zsh/completions:"* ]]; then export FPATH="/Users/dennis.vandenberg/.zsh/completions:$FPATH"; fi
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -35,7 +37,7 @@ plugins=(
 
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
   # eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/mountnugget.toml)"
-  eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/moonfly.toml)"
+  eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/rose-pine.toml)"
 fi
 
 if [ -f ~/.aliases ]; then
@@ -71,3 +73,4 @@ export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+. "/Users/dennis.vandenberg/.deno/env"

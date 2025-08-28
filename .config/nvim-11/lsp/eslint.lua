@@ -1,11 +1,3 @@
-local function get_workspace_folder()
-  local root = vim.fn.getcwd()
-  return {
-    name = vim.fn.fnamemodify(root, ":t"),
-    uri = vim.uri_from_fname(root),
-  }
-end
-
 local function insert_package_json(config_files, field, fname)
   local path = vim.fn.fnamemodify(fname, ":h")
   local root_with_package = vim.fs.find({ "package.json", "package.json5" }, { path = path, upward = true })[1]
@@ -19,7 +11,6 @@ local function insert_package_json(config_files, field, fname)
       end
     end
   end
-
   return config_files
 end
 
@@ -63,24 +54,27 @@ return {
     experimental = {
       useFlatConfig = false,
     },
-    codeActionsOnSave = {
+    codeActionOnSave = {
       enable = false,
       mode = "all",
     },
     format = true,
-    quiet = false, -- Ignore warnings
+    quiet = false,
     onIgnoredFiles = "off",
     rulesCustomizations = {},
-    run = "onType",
+    run = "onSave",
     problems = {
       shortenToSingleLine = false,
     },
+    -- nodePath configures the directory in which the eslint server should start its node_modules resolution.
+    -- This path is relative to the workspace folder (root dir) of the server instance.
     nodePath = "",
+    -- use the workspace folder location or the file location (if no workspace folder is open) as the working directory
     workingDirectory = { mode = "location" },
     codeAction = {
       disableRuleComment = {
         enable = true,
-        location = "seperateLine",
+        location = "separateLine",
       },
       showDocumentation = {
         enable = true,
@@ -88,9 +82,9 @@ return {
     },
   },
   before_init = function(_, config)
-    -- The 'workspaceFolder' is a VSCode concept. It limits how far the
-    -- server will travers the file system when locating the ESLint config
-    -- file (e.g. .eslintrc)
+    -- The "workspaceFolder" is a VSCode concept. It limits how far the
+    -- server will traverse the file system when locating the ESLint config
+    -- file (e.g., .eslintrc).
     local root_dir = config.root_dir
 
     if root_dir then
